@@ -21,5 +21,17 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+
+        post{
+            always{
+                cleanws()
+            }
+            success{
+                echo "this is success case "
+            }
+            failure{
+                echo "this is faile case"
+            }
+        }
     }
 }
