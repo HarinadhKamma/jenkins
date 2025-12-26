@@ -21,7 +21,7 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-
+    }
         post{
             always{
                 cleanWs()
@@ -33,5 +33,4 @@ pipeline {
                 echo "this is faile case"
             }
         }
-    }
 }
