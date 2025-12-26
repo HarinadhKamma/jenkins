@@ -10,7 +10,7 @@ pipeline {
     }
 
     options {
-        timeout(time: 10, unit: 'SECONDS') 
+        timeout(time: 10, unit: 'MINUTES') 
     }
       // Testing the web hook
       parameters {
