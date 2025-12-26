@@ -24,7 +24,7 @@ pipeline {
 
         post{
             always{
-                cleanws()
+                cleanWs()
             }
             success{
                 echo "this is success case "
