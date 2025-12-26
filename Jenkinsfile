@@ -60,5 +60,8 @@ pipeline {
             failure{
                 echo "this is faile case"
             }
+            aborted{
+                echo "this case is aborted"
+            }
         }
 }
