@@ -38,7 +38,6 @@ pipeline{
 
     post{
         always{
-            {
                 echo "workspace is clean"
                 cleanWs()
             }
@@ -52,7 +51,5 @@ pipeline{
                 echo "this is aborted"
             }
         }
-    }
-
-
+    
 }
