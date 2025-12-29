@@ -61,16 +61,18 @@ pipeline{
             }
         }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         // The name 'SonarScannerCLI' must match the name configured in Global Tool Configuration
-        //         def scannerHome = tool 'sonar-8.0' 
-        //         // The name 'My SonarQube Server' must match the name configured in Configure System
-        //         withSonarQubeEnv('My SonarQube Server') { 
-        //             sh "${scannerHome}/bin/sonar-scanner"
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            environment{
+               def scannerHome = tool 'sonar-8.0' 
+            }
+            steps {
+                script{
+                withSonarQubeEnv('sonar-server') { 
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+                }
+            }
+        }
 
         stage('test'){
             steps{
