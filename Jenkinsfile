@@ -38,14 +38,18 @@ pipeline{
 
     post{
         always{
-            cleanWs(){
+            {
                 echo "workspace is clean"
+                cleanWs()
             }
             success {
                 echo "this is success"
             }
             failure{
                 echo "this is failure"
+            }
+            aborted{
+                echo "this is aborted"
             }
         }
     }
