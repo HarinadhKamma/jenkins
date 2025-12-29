@@ -53,13 +53,24 @@ pipeline{
 }
                     sh """
                       aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin   ${account_id}.dkr.ecr.us-east-1.amazonaws.com
-                        docker build -t ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appversion} . 
+                        docker build -t ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${app_version} . 
                        docker images
-                       docker push ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appversion}
+                       docker push ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${app_version}
                        """
                 }
             }
         }
+
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         // The name 'SonarScannerCLI' must match the name configured in Global Tool Configuration
+        //         def scannerHome = tool 'sonar-8.0' 
+        //         // The name 'My SonarQube Server' must match the name configured in Configure System
+        //         withSonarQubeEnv('My SonarQube Server') { 
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }
 
         stage('test'){
             steps{
