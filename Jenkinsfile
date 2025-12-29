@@ -8,25 +8,30 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                script sh """
-                echo "it is building stage"
+                script{
+                    script sh """
+                echo "it is build stage"
                 """
+
+                } 
             }
         }
 
         stage('test'){
             steps{
-                script sh """
+                script { sh """
                 echo "it is testing stage"
                 """
+                }
             }
         }
 
         stage('deploy'){
             steps{
-                script sh """
+                script{ sh """
                 echo "it is deply phase"
                 """
+            }
             }
         }
     }
