@@ -1,6 +1,5 @@
 pipeline{
    agent{
-    // running on  the agent
       node{
         label 'agent-1'
       }
