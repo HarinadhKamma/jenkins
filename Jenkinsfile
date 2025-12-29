@@ -8,6 +8,9 @@ pipeline{
    environment{
     COURSE = "devops"
     app_version =""
+    account_id = "349727115914"
+    project ="roboshop"
+    component = "catalogue"
    }
 
     stages{
@@ -45,10 +48,15 @@ pipeline{
         stage('build image'){
             steps{
                 script{
+                    withAWS(credentials:'aws-cred') {
+    // do something
+}
                     sh """
-                    docker build -t catalogue:${app_version} .
-                    docker images
-                    """
+                      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin   ${account_id}.dkr.ecr.us-east-1.amazonaws.com
+                        docker build -t ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appversion} . 
+                       docker images
+                       docker push ${account_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appversion}
+                       """
                 }
             }
         }
