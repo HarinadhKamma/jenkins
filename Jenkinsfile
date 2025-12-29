@@ -1,83 +1,27 @@
-pipeline {
-    agent {
+pipeline{
+    agent{
         node{
             label 'agent-1'
         }
     }
 
-    environment(){
-      COURSE ="jenkins"
-    }
+    stages{
+        stage('build'){
+            steps{
+                echo "it is building stage"
+            }
+        }
 
-    options {
-        timeout(time: 10, unit: 'MINUTES') 
-    }
-      // Testing the web hook
-      parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two'], description: 'Pick something')
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-    }
-    stages {
-        stage('Build') {
-            steps {
-                script{
-                    sh """
-                        echo "Building"
-                        echo $COURSE
-                        #env
-                        #sleep 10 
-                    """
-                }
-                
-            }
-           
-        }
-        stage('Test') {
-            steps {
-                script{
-                    sh """
-                    echo "Testing.."
-                    """
-                }
-                
-            
+        stage('test'){
+            steps{
+                echo "it is testing stage"
             }
         }
-        stage('Deploy') {
-              input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                script{
-                    sh """
-                    echo "Deploying...."
-                  
-                    """
-                }
-                
+
+        stage('deploy'){
+            steps{
+                echo "it is deply phase"
             }
         }
     }
-        post{
-            always{
-                cleanWs()
-            }
-            success{
-                echo "this is success case "
-            }
-            failure{
-                echo "this is faile case"
-            }
-            aborted{
-                echo "this case is aborted"
-            }
-        }
 }
