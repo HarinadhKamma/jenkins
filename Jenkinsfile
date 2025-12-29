@@ -9,7 +9,7 @@ pipeline{
         stage('build'){
             steps{
                 script{
-                    script sh """
+                sh """
                 echo "it is build stage"
                 """
 
@@ -19,7 +19,8 @@ pipeline{
 
         stage('test'){
             steps{
-                script { sh """
+                script {
+                sh """
                 echo "it is testing stage"
                 """
                 }
@@ -28,7 +29,8 @@ pipeline{
 
         stage('deploy'){
             steps{
-                script{ sh """
+                script{
+                sh """
                 echo "it is deply phase"
                 """
             }
