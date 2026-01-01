@@ -1,7 +1,7 @@
 @Library('my-custom-library') _
 
 def emptyMap = [
-    project: "roboshop"
+    project: "roboshop",
     component: "catalogue"
 ]
 
